@@ -37,6 +37,13 @@ class _TodoListScreenState extends State<TodoListScreen> {
       //AppBarは画面上部のタイトルバー
       appBar: AppBar(
         title: const Text('ToDoリスト'),
+        actions: [
+          IconButton(onPressed: (){
+            setState(() {
+              todos.removeWhere((todo) => todo.isDone);
+            });
+          }, icon: const Icon(Icons.delete))
+        ],
       ),
       //ListViewはスクロール可能なリスト。mapの処理でtodoの中身を1件ずつ処理してく。
       body: ListView(
@@ -49,8 +56,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
             title: Text(
               todo.title,
               style: TextStyle(
-                decoration:
-                  todo.isDone ? TextDecoration.lineThrough : null,
+                decoration: todo.isDone ? TextDecoration.lineThrough : TextDecoration.none,
               ),
             ),
             onTap: () => toggleTodo(todo.id),
