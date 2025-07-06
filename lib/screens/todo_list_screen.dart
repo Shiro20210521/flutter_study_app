@@ -59,6 +59,9 @@ class _TodoListScreenState extends State<TodoListScreen> {
                 decoration: todo.isDone ? TextDecoration.lineThrough : TextDecoration.none,
               ),
             ),
+            subtitle: todo.deadline != null
+              ? Text('期限: ${todo.deadline!.toLocal().toString().split(' ')[0]}')
+                :null,
             onTap: () => toggleTodo(todo.id),
           );
         }).toList(),
